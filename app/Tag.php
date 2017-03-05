@@ -23,4 +23,9 @@ class Tag extends Model
     protected $hidden = [
         
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }

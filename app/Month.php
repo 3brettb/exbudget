@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Month extends Model
 {
@@ -23,4 +24,19 @@ class Month extends Model
     protected $hidden = [
         
     ];
+
+    public function month()
+    {
+        return Carbon::parse($this->month);
+    }
+
+    public function year()
+    {
+        return Carbon::parse($this->year);
+    }
+
+    public function budgets()
+    {
+        return $this->hasMany(Budget::class);
+    }
 }
