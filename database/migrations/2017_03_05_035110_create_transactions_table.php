@@ -19,7 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->date('date');
             $table->float('amount', 10, 2);
             $table->string('description');
-            $table->string('notes');
+            $table->string('notes')->nullable();
             $table->uuid('category_id')->references('id')->on('categories');
             $table->uuid('sub_category_id')->references('id')->on('sub_categories');
             $table->uuid('account_id')->references('id')->on('accounts');

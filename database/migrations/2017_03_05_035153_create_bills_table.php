@@ -19,7 +19,7 @@ class CreateBillsTable extends Migration
             $table->string('description', 100);
             $table->float('amount', 10, 2);
             $table->date('start');
-            $table->date('end');
+            $table->date('end')->nullable();
             $table->string('occurs', 20);
             $table->uuid('category_id')->references('id')->on('categories');
             $table->uuid('sub_category_id')->references('id')->on('sub_categories');

@@ -16,7 +16,7 @@ class CreateSubCategoriesTable extends Migration
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name', 100);
-            $table->string('description', 100);
+            $table->string('description', 100)->nullable();
             $table->uuid('account_id')->references('id')->on('accounts');
             $table->uuid('category_id')->references('id')->on('categories');
             $table->timestamps();

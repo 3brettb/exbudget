@@ -16,7 +16,7 @@ class CreateBudgetsTable extends Migration
         Schema::create('budgets', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->float('amount', 10, 2);
-            $table->string('description', 100);
+            $table->string('description', 100)->nullable();
             $table->uuid('category_id')->references('id')->on('categories');
             $table->uuid('sub_category_id')->references('id')->on('sub_categories');
             $table->integer('month_id')->references('id')->on('months');
