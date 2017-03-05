@@ -1,5 +1,7 @@
 <?php
 
+$account_prefix = '/account/{account}';
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,12 +26,40 @@ Route::post('/logout', 'Auth\AuthController@logout');
 /*
  * Root Redirect
  */
-Route::get('/', function () {
-    return Redirect::to('/accounts');
-});
+Route::get('/', function () { return Redirect::to('/accounts'); });
 
 /*
  * Account Routes
  */
+Route::get('/accounts', 'AccountController@index');
+Route::get('/account/create', 'AccountController@create');
+Route::post('/accounts', 'AccountController@store');
+Route::get('/account/{account}', function($id){ return Redirect::to("/account/$id/dashboard"); });
+Route::get('/account/{account}/dashboard', 'AccountController@show');
+Route::get('/account/{account}/analytics', 'AccountController@analytics');
+Route::get('/account/{account}/settings', 'AccountController@edit');
+Route::put('/account/{account}', 'AccountController@update');
+Route::delete('/account/{account}', 'AccountController@destroy');
 
+/*
+ * Transaction Routes
+ */
+Route::resource($account_prefix.'/transaction', 'TransactionController');
+Route::get($account_prefix.'/transaction/upload', 'TransactionController@file');
+Route::post($account_prefix.'/transaction/upload', 'TransactionController@upload');
 
+/*
+ * Category Routes
+ */
+Route::resource($account_prefix.'/category', 'CategoryController');
+
+/*
+ * Month Routes
+ */
+Route::get($account_prefix.'/month', 'MonthController@index');
+Route::get($account_prefix.'/month/{month}', 'MonthController@show');
+
+/*
+ * Sub Category Routes
+ */
+Route::resource($account_prefix.'/category/{category}/subcategory', 'SubCategoryController');
