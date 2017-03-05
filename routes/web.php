@@ -17,11 +17,11 @@ $account_prefix = '/account/{account}';
  * Authentication Routes
  */
 //Auth::routes();
-Route::get('/register', 'Auth\AuthController@register');
-Route::get('/login', 'Auth\AuthController@login');
+Route::get('/register', 'Auth\AuthController@register')->name('register');
+Route::get('/login', 'Auth\AuthController@login')->name('login');
 Route::post('/register', 'Auth\AuthController@create');
 Route::post('/login', 'Auth\AuthController@authenticate');
-Route::post('/logout', 'Auth\AuthController@logout');
+Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
 
 /*
  * Root Redirect
@@ -31,15 +31,16 @@ Route::get('/', function () { return Redirect::to('/accounts'); });
 /*
  * Account Routes
  */
-Route::get('/accounts', 'AccountController@index');
+Route::get('/accounts', 'AccountController@index')->name('home');
 Route::get('/account/create', 'AccountController@create');
 Route::post('/accounts', 'AccountController@store');
 Route::get('/account/{account}', function($id){ return Redirect::to("/account/$id/dashboard"); });
 Route::get('/account/{account}/dashboard', 'AccountController@show');
-Route::get('/account/{account}/analytics', 'AccountController@analytics');
 Route::get('/account/{account}/settings', 'AccountController@edit');
 Route::put('/account/{account}', 'AccountController@update');
 Route::delete('/account/{account}', 'AccountController@destroy');
+
+Route::get('/account/{account}/analytics', 'AnalyticsController@index');
 
 /*
  * Transaction Routes
