@@ -11,6 +11,25 @@
 |
 */
 
+/*
+ * Authentication Routes
+ */
+//Auth::routes();
+Route::get('/register', 'Auth\AuthController@register');
+Route::get('/login', 'Auth\AuthController@login');
+Route::post('/register', 'Auth\AuthController@create');
+Route::post('/login', 'Auth\AuthController@authenticate');
+Route::post('/logout', 'Auth\AuthController@logout');
+
+/*
+ * Root Redirect
+ */
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::to('/accounts');
 });
+
+/*
+ * Account Routes
+ */
+
+

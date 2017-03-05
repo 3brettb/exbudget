@@ -36,6 +36,31 @@ class User extends Authenticatable
     {
         return $this->hasMany(Permissions::class);
     }
+    
+    public function generate_user_token($type, $size=60)
+    {
+        switch($type){
+            case 'api':
+                $this->api_token = str_random($size);
+                $this->save();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public function revoke_user_token($type)
+    {
+        switch($type)
+        {
+            case 'api':
+                $this->api_token = null;
+                $this->save();
+                return true;
+            default:
+                return false;
+        }
+    }
 
     
 }
