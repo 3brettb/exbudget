@@ -12,7 +12,7 @@ class SubCategory extends Model
      * @var array
      */
     protected $fillable = [
-        'uuid', 'name', 'description', 'account_id', 'category_id',
+        'id', 'name', 'description', 'account_id', 'category_id',
     ];
 
     /**

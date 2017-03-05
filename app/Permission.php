@@ -12,7 +12,7 @@ class Permission extends Model
      * @var array
      */
     protected $fillable = [
-        'uuid', 'name', 'value', 'user_id', 'account_id', 
+        'id', 'name', 'value', 'user_id', 'account_id', 
     ];
 
     /**

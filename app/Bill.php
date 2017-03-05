@@ -12,7 +12,7 @@ class Bill extends Model
      * @var array
      */
     protected $fillable = [
-        'uuid', 'name', 'description', 'amount', 'start', 'end', 'occurs', 'category_id', 'sub_category_id', 'account_id',
+        'id', 'name', 'description', 'amount', 'start', 'end', 'occurs', 'category_id', 'sub_category_id', 'account_id',
     ];
 
     /**

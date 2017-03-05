@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id', 'firstname', 'lastname', 'username', 'email', 'password',
     ];
 
     /**
@@ -35,6 +35,11 @@ class User extends Authenticatable
     public function permissions()
     {
         return $this->hasMany(Permissions::class);
+    }
+
+    public function accounts()
+    {
+        return $this->belongsToMany(Account::class);
     }
     
     public function generate_user_token($type, $size=60)

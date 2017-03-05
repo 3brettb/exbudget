@@ -12,7 +12,7 @@ class Account extends Model
      * @var array
      */
     protected $fillable = [
-        'uuid', 'name', 'description', 'user_id', 
+        'id', 'name', 'description', 'user_id', 
     ];
 
     /**

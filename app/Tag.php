@@ -12,7 +12,7 @@ class Tag extends Model
      * @var array
      */
     protected $fillable = [
-        'uuid', 'name', 'description', 'account_id', 
+        'id', 'name', 'description', 'account_id', 
     ];
 
     /**

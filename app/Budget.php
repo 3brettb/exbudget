@@ -12,7 +12,7 @@ class Budget extends Model
      * @var array
      */
     protected $fillable = [
-        'uuid', 'amount', 'description', 'category_id', 'sub_category_id', 'month_id', 'account_id', 
+        'id', 'amount', 'description', 'category_id', 'sub_category_id', 'month_id', 'account_id', 
     ];
 
     /**
