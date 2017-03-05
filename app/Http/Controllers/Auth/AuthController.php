@@ -28,11 +28,13 @@ class AuthController extends Controller
         $this->validate(request(), [
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
-            'username' => 'required|min:4|unique:user',
+            'email' => 'required|max:100|unique:users',
+            'username' => 'required|min:4|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
 
         $user = User::create([
+            'id' => uuid(),
             'firstname' => request('firstname'),
             'lastname' => request('lastname'),
             'username' => request('username'),

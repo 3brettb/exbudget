@@ -91,4 +91,25 @@ class TransactionController extends Controller
     {
         //
     }
+
+    /**
+     * Show the form for uploading a data file.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function file()
+    {
+        return view('transaction.upload');
+    }
+
+    /**
+     * Load a file full of data into database
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function upload(Request $request)
+    {
+
+    }
 }
