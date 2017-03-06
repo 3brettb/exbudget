@@ -12,7 +12,7 @@ class Budget extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'amount', 'description', 'category_id', 'sub_category_id', 'month_id', 'account_id', 
+        'amount', 'description', 'category_id', 'sub_category_id', 'month_id', 'account_id', 
     ];
 
     /**
@@ -23,6 +23,20 @@ class Budget extends Model
     protected $hidden = [
         
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($budget){
+            $budget->id = uuid();
+        });
+    }
 
     public function category()
     {

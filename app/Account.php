@@ -12,7 +12,7 @@ class Account extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'description', 'user_id', 
+        'name', 'description', 'user_id', 
     ];
 
     /**
@@ -23,6 +23,20 @@ class Account extends Model
     protected $hidden = [
         
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($account){
+            $account->id = uuid();
+        });
+    }
 
     public function users()
     {

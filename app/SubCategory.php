@@ -12,7 +12,7 @@ class SubCategory extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'description', 'account_id', 'category_id',
+        'name', 'description', 'account_id', 'category_id',
     ];
 
     /**
@@ -23,6 +23,20 @@ class SubCategory extends Model
     protected $hidden = [
         
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($sub){
+            $sub->id = uuid();
+        });
+    }
 
     public function category()
     {

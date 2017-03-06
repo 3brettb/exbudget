@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'firstname', 'lastname', 'username', 'email', 'password',
+        'firstname', 'lastname', 'username', 'email', 'password',
     ];
 
     /**
@@ -26,6 +26,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($user){
+            $user->id = uuid();
+        });
+    }
 
     public function settings()
     {

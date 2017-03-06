@@ -12,8 +12,23 @@ class Transaction extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'hash', 'date', 'amount', 'description', 'notes', 'category_id', 'sub_category_id', 'account_id', 
+        'hash', 'date', 'amount', 'description', 'notes', 'category_id', 'sub_category_id', 'account_id', 
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($transaction){
+            $transaction->id = uuid();
+            $transaction->hash = "hash the request";
+        });
+    }
 
     /**
      * The attributes that should be hidden for arrays.

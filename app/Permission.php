@@ -12,7 +12,7 @@ class Permission extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'value', 'user_id', 'account_id', 
+        'name', 'value', 'user_id', 'account_id', 
     ];
 
     /**
@@ -23,6 +23,20 @@ class Permission extends Model
     protected $hidden = [
         
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($permission){
+            $permission->id = uuid();
+        });
+    }
 
     public function user()
     {

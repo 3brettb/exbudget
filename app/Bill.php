@@ -12,7 +12,7 @@ class Bill extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'description', 'amount', 'start', 'end', 'occurs', 'category_id', 'sub_category_id', 'account_id',
+        'name', 'description', 'amount', 'start', 'end', 'occurs', 'category_id', 'sub_category_id', 'account_id',
     ];
 
     /**
@@ -23,6 +23,20 @@ class Bill extends Model
     protected $hidden = [
         
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($bill){
+            $bill->id = uuid();
+        });
+    }
 
     public function category()
     {

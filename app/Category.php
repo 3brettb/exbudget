@@ -12,7 +12,7 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'description', 'multiplier', 'account_id', 
+        'name', 'description', 'multiplier', 'account_id', 
     ];
 
     /**
@@ -23,6 +23,20 @@ class Category extends Model
     protected $hidden = [
         
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($category){
+            $category->id = uuid();
+        });
+    }
 
     public function account()
     {

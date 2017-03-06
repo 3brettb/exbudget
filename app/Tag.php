@@ -12,7 +12,7 @@ class Tag extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'description', 'account_id', 
+        'name', 'description', 'account_id', 
     ];
 
     /**
@@ -23,6 +23,20 @@ class Tag extends Model
     protected $hidden = [
         
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($tag){
+            $tag->id = uuid();
+        });
+    }
 
     public function account()
     {
