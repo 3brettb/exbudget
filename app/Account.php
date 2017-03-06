@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
 {
+
+    public $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -37,6 +40,21 @@ class Account extends Model
             $account->id = uuid();
         });
     }
+
+    
+    protected function create($request)
+    {
+        $account = parent::create($request);
+        AccountUser::create([
+            'user_id' => auth()->user()->id,
+            'account_id' => $account->id,
+        ]);
+        return $account;
+    }
+
+    /*
+     * Relationships
+     */
 
     public function users()
     {
@@ -93,4 +111,19 @@ class Account extends Model
      */
     
     public function owner(){ return $this->user(); }
+
+    /*
+     * Custom Functions
+     */
+    
+    public function month($month=null)
+    {
+        $month = ($month==null) ? \Carbon\Carbon::now()->format('F') : $month;
+        return Month::where('month', $month)->first();
+    }
+
+    public function balance($month=null)
+    {
+        return $this->month($month)->currentBalance();
+    }
 }

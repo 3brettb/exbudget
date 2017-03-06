@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class AccountUser extends Model
 {
+
+    public $incrementing = false;
+    
+    public $table = 'account_user';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -36,5 +41,13 @@ class AccountUser extends Model
         static::creating(function($account_user){
             $account_user->id = uuid();
         });
+    }
+
+    protected function create($request)
+    {
+        return parent::create([
+            'account_id' => $request['account_id'],
+            'user_id' =>$request['user_id']
+        ]);
     }
 }
