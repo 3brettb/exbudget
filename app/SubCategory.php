@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class SubCategory extends Model
 {
+
+    public $incrementing = false;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -37,6 +40,10 @@ class SubCategory extends Model
             $sub->id = uuid();
         });
     }
+
+    /*
+     * Relationships
+     */
 
     public function category()
     {

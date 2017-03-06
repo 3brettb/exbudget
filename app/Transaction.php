@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+
+    public $incrementing = false;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -38,6 +41,10 @@ class Transaction extends Model
     protected $hidden = [
         
     ];
+
+    /*
+     * Relationships
+     */
 
     public function category()
     {

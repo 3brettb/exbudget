@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
+
+    public $incrementing = false;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -37,6 +40,10 @@ class Tag extends Model
             $tag->id = uuid();
         });
     }
+
+    /*
+     * Relationships
+     */
 
     public function account()
     {

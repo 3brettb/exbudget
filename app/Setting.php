@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
+
+    public $incrementing = false;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -37,6 +40,10 @@ class Setting extends Model
             $setting->id = uuid();
         });
     }
+
+    /*
+     * Relationships
+     */
 
     public function user()
     {
