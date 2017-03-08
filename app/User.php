@@ -9,6 +9,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public $incrementing = false;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -41,6 +43,10 @@ class User extends Authenticatable
         });
     }
 
+    /*
+     * Relationships
+     */
+
     public function settings()
     {
         return $this->hasMany(Setting::class);
@@ -54,6 +60,15 @@ class User extends Authenticatable
     public function accounts()
     {
         return $this->belongsToMany(Account::class);
+    }
+
+    /*
+     * Custom Functions
+     */
+
+    public function account()
+    {
+        return Account::findOrFail(session()->get('account_id'));
     }
     
     public function generate_user_token($type, $size=60)

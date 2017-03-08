@@ -13,7 +13,7 @@ class Month extends Model
      * @var array
      */
     protected $fillable = [
-        'month', 'year', 'date'
+        'month', 'year', 'date', 'balance_in', 'balance_out'
     ];
 
     /**
@@ -24,6 +24,10 @@ class Month extends Model
     protected $hidden = [
         
     ];
+
+    /*
+     * Relationships
+     */
 
     public function month()
     {
@@ -38,5 +42,49 @@ class Month extends Model
     public function budgets()
     {
         return $this->hasMany(Budget::class);
+    }
+
+    /*
+     * Custom Functions
+     */
+
+    public static function current()
+    {
+        return self::resolve_month(Carbon::now());
+    }
+
+    public function last()
+    {
+        return self::resolve_month(Carbon::parse($this->month." ".$this->year)->subMonth());
+    }
+
+    public function get($parser)
+    {
+        return self::resolve_month(Carbon::parse($parser));
+    }
+
+    public function transactions()
+    {
+        $start = $this->month()->startOfMonth();
+        $end = $this->month()->endOfMonth();
+        return Transaction::where('date', '>=', $start)->where('date', '<=', $end)->get();
+    }
+
+    public function current_balance()
+    {
+        $balance = ($this->balance_in == null) ? 0 : $this->balance_in;
+        $transactions = $this->transactions();
+        foreach($transactions as $trans){
+            $mult = $trans->category->multiplier;
+            $balance += (float)($trans->amount*$mult);
+        }
+        return $balance;
+    }
+
+    private static function resolve_month($carbon)
+    {
+        $month = $carbon->format('F');
+        $year = $carbon->format('Y');
+        return parent::where('month', $month)->where('year', $year)->first();
     }
 }

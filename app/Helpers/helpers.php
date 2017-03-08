@@ -45,3 +45,23 @@
                 return \App\Helpers\UUID::v5($n, microtime(true));
         }
     }
+
+    function month_int($arg=null)
+    {
+        return ($arg=null) ? \Carbon\Carbon::now()->month : \Carbon\Carbon::parse($arg)->month;
+    }
+
+    function month_string($arg=null)
+    {
+        return ($arg=null) ? \Carbon\Carbon::now()->format('F') : \Carbon\Carbon::parse($arg)->format('F');
+    }
+
+    function month_begin($arg=null)
+    {
+        return ($arg=null) ? \Carbon\Carbon::now()->startOfMonth() : \Carbon\Carbon::parse($arg)->startOfMonth();
+    }
+
+    function month_end($arg=null)
+    {
+        return ($arg=null) ? \Carbon\Carbon::now()->endOfMonth() : \Carbon\Carbon::parse($arg)->endOfMonth();
+    }

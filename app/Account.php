@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Account extends Model
 {
@@ -116,14 +117,13 @@ class Account extends Model
      * Custom Functions
      */
     
-    public function month($month=null)
+    public function month()
     {
-        $month = ($month==null) ? \Carbon\Carbon::now()->format('F') : $month;
-        return Month::where('month', $month)->first();
+        return Month::current();
     }
 
     public function balance($month=null)
     {
-        return $this->month($month)->currentBalance();
+        return $this->month()->last()->balance_out + $this->month()->current_balance();
     }
 }
