@@ -24,8 +24,8 @@
                             <a href="{{url('/accounts')}}">
                             <span class="fa fa-university" aria-hidden="true"></span> Accounts<span class="sr-only">(current)</span></a>
                     </li>
-                    @if(Auth::user()->current_account)
-                        <?php $a_id = Auth::user()->current_account; ?>
+                    @if(Auth::user()->account())
+                        <?php $a_id = Auth::user()->account()->id; ?>
                         <li>
                                 <a href="{{url("/account/$a_id/dashboard")}}">
                                 <i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard<span class="sr-only">(current)</span>
@@ -34,6 +34,21 @@
                         <li>
                                 <a href="{{url("/account/$a_id/analytics")}}">
                                 <i class="fa fa-pie-chart" aria-hidden="true"></i> Analytics<span class="sr-only">(current)</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="{{url("/account/$a_id/transaction")}}">
+                                <i class="fa fa-pie-chart" aria-hidden="true"></i> Transactions<span class="sr-only">(current)</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="{{url("/account/$a_id/category")}}">
+                                <i class="fa fa-cubes" aria-hidden="true"></i> Categories<span class="sr-only">(current)</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="{{url("/account/$a_id/month")}}">
+                                <i class="fa fa-calendar" aria-hidden="true"></i> Months<span class="sr-only">(current)</span>
                                 </a>
                         </li>
                     @endif
