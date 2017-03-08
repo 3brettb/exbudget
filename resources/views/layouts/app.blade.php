@@ -33,6 +33,10 @@
     <!-- Dynamically Included Scripts -->
     @yield('script-top')
 
+    
+    <!-- Google Visualization -->
+    @yield('google-visualization')
+
     <!-- Page style -->
     <style type="text/css">
         @yield('style')
