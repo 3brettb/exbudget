@@ -27,6 +27,7 @@ Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
  * Root Redirect
  */
 Route::get('/', function () { return Redirect::to('/accounts'); });
+Route::get('/home', function () { return Redirect::to('/accounts'); });
 
 /*
  * Account Routes
@@ -64,3 +65,13 @@ Route::get($account_prefix.'/month/{month}', 'MonthController@show');
  * Sub Category Routes
  */
 Route::resource($account_prefix.'/category/{category}/subcategory', 'SubCategoryController');
+
+
+
+
+
+
+/*
+ * Test routes
+ */
+Route::get('/test/graphs', function() { return view('tests.graphs'); });
