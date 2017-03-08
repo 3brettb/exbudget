@@ -76,7 +76,16 @@
         </table>
     </div>
 
-    <button id="uploadTransactions">Upload Transactions CSV</button>
-    <button id="addTransaction">Add Transaction</button>
+    <h4>Top 5 Monthly Categories</h4>
+    <ol>
+        <li><a href="#subcategory">Tuition</a> (<a href="#category">School</a>): <b>$ 634.00</b></li>
+        <li><a href="#subcategory">Grocery</a> (<a href="#category">Food</a>) : <b>$ 354.25</b></li>
+        <li><a href="#subcategory">Fuel</a> (<a href="#category">Transportation</a>): <b>$ 81.42</b></li>
+        <li><a href="#subcategory">Fast Food</a> (<a href="#category">Food</a>): <b>$ 78.34</b></li>
+        <li><a href="#subcategory">Eating Out</a> (<a href="#category">Food</a>): <b>$ 64.23</b></li>
+    </ol>
+
+    <a id="uploadTransactions" class="btn btn-default">Upload Transactions CSV</button>
+    <a id="addTransaction" class="btn btn-default">Add Transaction</button>
 
 @endsection
