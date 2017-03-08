@@ -17,7 +17,8 @@ class CreateMonthsTable extends Migration
             $table->increments('id');
             $table->string('month', 15);
             $table->string('year', 4);
-            $table->date('date');
+            $table->date('start')->unique();
+            $table->date('end')->unique();
             $table->float('balance_in', 10, 2);
             $table->float('balance_out', 10, 2);
             $table->timestamps();
