@@ -15,9 +15,11 @@ class CreateMonthsTable extends Migration
     {
         Schema::create('months', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('month', 50);
+            $table->string('month', 15);
             $table->string('year', 4);
             $table->date('date');
+            $table->float('balance_in', 10, 2);
+            $table->float('balance_out', 10, 2);
             $table->timestamps();
         });
     }
