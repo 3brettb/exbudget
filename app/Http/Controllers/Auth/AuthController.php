@@ -34,7 +34,6 @@ class AuthController extends Controller
         ]);
 
         $user = User::create([
-            'id' => uuid(),
             'firstname' => request('firstname'),
             'lastname' => request('lastname'),
             'username' => request('username'),
