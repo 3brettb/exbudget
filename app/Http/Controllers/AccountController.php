@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Account;
+
 class AccountController extends Controller
 {
 
@@ -24,7 +26,13 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('account.index');
+        if(count(auth()->user()->accounts) == 0){
+            return redirect()->to('/account/create');
+        }
+        else{
+            $accounts = auth()->user()->accounts()->orderBy('created_at', 'DESC')->get();
+            return view('account.index')->withAccounts($accounts);
+        }
     }
 
     /**
@@ -45,7 +53,18 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*auth()->user()->accounts()->create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'user_id' => auth()->user()->id
+        ]);*/
+        Account::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'user_id' => auth()->user()->id
+        ]);
+
+        return $this->index();
     }
 
     /**
@@ -56,7 +75,8 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        //
+        session()->put('account_id', $id);
+        return view('account.dashboard');
     }
 
     /**
@@ -67,7 +87,7 @@ class AccountController extends Controller
      */
     public function edit($id)
     {
-        return view('account.edit');
+        return view('account.settings');
     }
 
     /**
