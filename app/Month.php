@@ -67,7 +67,7 @@ class Month extends Model
     {
         $start = $this->month()->startOfMonth();
         $end = $this->month()->endOfMonth();
-        return Transaction::where('date', '>=', $start)->where('date', '<=', $end)->get();
+        return Transaction::where('date', '>=', $start)->where('date', '<=', $end)->where('category_id', '!=', null)->get();
     }
 
     public function current_balance()

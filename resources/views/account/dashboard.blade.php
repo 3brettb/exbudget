@@ -85,7 +85,12 @@
         <li><a href="#subcategory">Eating Out</a> (<a href="#category">Food</a>): <b>$ 64.23</b></li>
     </ol>
 
-    <a id="uploadTransactions" class="btn btn-default">Upload Transactions CSV</button>
-    <a id="addTransaction" class="btn btn-default">Add Transaction</button>
+    <a id="uploadTransactions" class="btn btn-default" data-toggle="modal" data-target="#upload_transaction_modal">Upload Transactions CSV</a>    
+    <a id="addTransaction" class="btn btn-default" data-toggle="modal" data-target="#add_transaction_modal">Add Transaction</a>
 
+@endsection
+
+@section('modal')
+    @include('transaction.modals.upload', array('id'=>'upload_transaction_modal'))
+    @include('transaction.modals.create', array('id'=>'add_transaction_modal'))
 @endsection

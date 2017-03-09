@@ -23,7 +23,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view('transaction.index');
+        $transactions = auth()->user()->account()->transactions()->orderBy('date', 'DESC')->paginate(25);
+        return view('transaction.index')->withTransactions($transactions);
     }
 
     /**

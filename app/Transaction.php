@@ -29,7 +29,11 @@ class Transaction extends Model
 
         static::creating(function($transaction){
             $transaction->id = uuid();
-            $transaction->hash = "hash the request";
+            $transaction->date = \Carbon\Carbon::parse($transaction->date)->format('Y-m-d');
+            if(!isset($transaction->description)){
+                $transaction->description = (isset($transaction->notes)) ? $transaction->notes : "";
+            }
+            $transaction->hash = md5($transaction->date.$transaction->amount.$transaction->description);
         });
     }
 
