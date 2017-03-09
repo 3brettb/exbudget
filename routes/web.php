@@ -72,12 +72,16 @@ Route::resource($account_prefix.'/category/{category}/subcategory', 'SubCategory
 /*
  * Get Request routes
  */
+Route::get('/get/categories', 'Requests\GetController@categories');
 Route::get('/get/subcategories', 'Requests\GetController@subcategories');
 
 /*
  * Post Request routes
  */
 Route::post('/post/transaction', 'Requests\PostController@transaction');
+Route::post('/post/transaction/{transaction}/category', 'Requests\PostController@transaction_category');
+Route::post('/post/transaction/{transaction}/sub_category', 'Requests\PostController@transaction_sub_category');
+Route::post('/post/transaction/{transaction}/clear_sub_category', 'Requests\PostController@transaction_clear_sub_category');
 
 /*
  * Test routes

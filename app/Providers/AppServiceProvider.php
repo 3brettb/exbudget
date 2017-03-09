@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('*', function($view){
-            if(auth()->user()->account()){
+            if(auth()->user() && auth()->user()->account()){
                 $view->with('account', auth()->user()->account());
             }
         });

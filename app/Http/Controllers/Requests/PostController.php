@@ -8,6 +8,8 @@ use Illuminate\Database\QueryException;
 
 use App\Http\Controllers\Controller;
 
+use App\Transaction;
+
 class PostController extends Controller
 {
 
@@ -30,6 +32,24 @@ class PostController extends Controller
             return self::add_csv($filename);
         }
         return self::add_transaction($request);
+    }
+
+    public function transaction_category(Transaction $transaction, Request $request)
+    {
+        $transaction->category_id = $request->category_id;
+        $transaction->save();
+    }
+
+    public function transaction_sub_category(Transaction $transaction, Request $request)
+    {
+        $transaction->sub_category_id = $request->sub_category_id;
+        $transaction->save();
+    }
+
+    public function transaction_clear_sub_category(Transaction $transaction)
+    {
+        $transaction->sub_category_id = null;
+        $transaction->save();
     }
 
     private function add_transaction($request)

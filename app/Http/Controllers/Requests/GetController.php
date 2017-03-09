@@ -19,6 +19,11 @@ class GetController extends Controller
         $this->middleware('auth');
     }
     
+    public function categories()
+    {
+        return auth()->user()->account()->categories;
+    }
+
     public function subcategories()
     {
         $id = (isset($_GET['category'])) ? $_GET['category'] : null;

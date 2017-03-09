@@ -68,7 +68,7 @@ class User extends Authenticatable
 
     public function account()
     {
-        return Account::findOrFail(session()->get('account_id'));
+        return Account::find(session()->get('account_id'));
     }
     
     public function generate_user_token($type, $size=60)
